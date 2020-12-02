@@ -44,7 +44,7 @@ function initCatalog() {
     return catalog;
 }
 
-function renderCatalogTemplate(item, i) {
+function renderCatalogTemplate(item) {
     return `
         <div class="featuredItem">
             <div class="featuredImgWrap">
