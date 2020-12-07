@@ -13,18 +13,31 @@ class Basket  {
         this.totalContainer = document.querySelector('#basket-sum');
         
         this._get(this.url)
-            .then(basket => {
-                this.items = basket.content;
-                this._render();
-                this._handleEvents();
-            }); // url
+            // .then(basket => {
+            //     this.items = basket.content;
+            //     this._render();
+            //     this._handleEvents();
+            // }); // url
     }
     
-    async _get(url) {
-        const d = await fetch(url);
-        return await d.json(); //сделает запрос за джейсоном, дождется ответа и преобразует джейсон в объект, который вернется из данного метода
+    // async _get(url) {
+    //     const d = await fetch(url);
+    //     return await d.json(); //сделает запрос за джейсоном, дождется ответа и преобразует джейсон в объект, который вернется из данного метода
+    // }
+    _get = (url) => {
+        return new Promise ((resolve, reject) => {
+            const d = fetch(url)
+            resolve(d)
+        })
+        .then(d => {
+            return d.json()
+        })
+        .then(basket => {
+            this.items = basket.content
+            this._render()
+            this._handleEvents()
+        })
     }
-    
     _render() {
         let htmlStr = '';
 
